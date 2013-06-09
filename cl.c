@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #ifdef __APPLE__
 #include <OpenCL/opencl.h>
 #else
 #include <CL/cl.h>
-#include <string.h>
 #endif
 
 #define DATA_SIZE 1024
