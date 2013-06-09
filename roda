@@ -1,0 +1,18 @@
+#!/bin/bash
+
+TIME=/usr/bin/time\ -f"%C\t|%E"
+
+$TIME ./serial
+
+$TIME ./mp
+
+$TIME  mpiexec -np 8 ./mpi
+
+$TIME  mpiexec -np 4 ./mpi_mp
+
+$TIME ./cl 0 cpu
+
+$TIME ./cl 1 cpu
+
+$TIME ./cl 0 gpu
+

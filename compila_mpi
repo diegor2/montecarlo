@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ gcc mpi_mp.c -fopenmp -c  `mpicc --showme:compile` 
+ gcc mpi_mp.o -fopenmp `mpicc --showme:link` -o mpi_mp
+
+ clang mpi.c -c `mpicc --showme:compile` 
+ clang mpi.o `mpicc --showme:link` -o mpi
+
+# mpiexec -np 4 ./mpi
+
+ 

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+clang serial.c -o serial
+gcc -fopenmp mp.c -o mp
+clang cl.c -lOpenCL -o cl
+
+source compila_mpi
+
+
