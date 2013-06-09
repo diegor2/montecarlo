@@ -1,0 +1,9 @@
+cl
+mp
+mpi
+mpi.o
+mpi_mp
+mpi_mp.o
+rand_r.o
+serial
+teste.o
