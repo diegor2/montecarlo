@@ -22,7 +22,6 @@ int main(int argc, char** argv){
        	dentro = 0;
 
        	for(i=0; i < (MAX/numtasks) ; i++){
-
        	    x = (double) rand() / RAND_MAX;
        	    y = (double) rand() / RAND_MAX;
 
