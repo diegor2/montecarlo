@@ -25,7 +25,5 @@ int main(int argc, char** argv){
 }
   qpi = (double) dentro / MAX;
   printf("%lf\n", 4*qpi);
-
-  return EXIT_SUCCESS;
-
+  return;
 }

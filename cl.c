@@ -12,7 +12,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 const char *KernelSource = "\n" \
-"#define MAX 1000000                                                    \n" \
+"#define MAX 1048576                                                    \n" \
 "int rand_r (__global unsigned int *seed)                               \n" \
 "{                                                                      \n" \
 "    unsigned int next = *seed;                                         \n" \
@@ -104,8 +104,8 @@ int main(int argc, char** argv){
 
     // Find the platform
     cl_platform_id platforms[10];
-    cl_uint *num_platforms;
-    err = clGetPlatformIDs(10, platforms, num_platforms);
+    cl_uint num_platforms;
+    err = clGetPlatformIDs(10, platforms, &num_platforms);
     if (err != CL_SUCCESS)
     {
         printf("Error: Failed to find a platform!\n");
@@ -119,12 +119,16 @@ int main(int argc, char** argv){
         printf("Error: Failed to get platform information!\n");
         return EXIT_FAILURE;
     } else {
-	//printf("platform :: %s\n", platform_name);
+	printf("platform :: %s\n", platform_name);
     }
 
 
     // Connect to a compute device
-    err = clGetDeviceIDs(platforms[platform], device_type, 1, &device_id, NULL);
+    if(num_platforms>1){
+        err = clGetDeviceIDs(platforms[platform], device_type, 1, &device_id, NULL);
+    } else {
+        err = clGetDeviceIDs(NULL, device_type, 1, &device_id, NULL);
+    }
     if (err != CL_SUCCESS)
     {
         printf("Error: Failed to create a device group!\n");
@@ -138,7 +142,7 @@ int main(int argc, char** argv){
         printf("Error: Failed to get device information!\n");
         return EXIT_FAILURE;
     } else {
-	//printf("Device :: %s\n", device_name);
+	printf("Device :: %s\n", device_name);
     }
   
     // Create a compute context 
@@ -275,6 +279,6 @@ int main(int argc, char** argv){
     }
 
   qpi = (double) total/ count/MAX;
-  printf("%lf %d %d %d\n", 4*qpi, total, count, MAX);
+  printf("%lf\n", 4*qpi);
 
 }

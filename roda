@@ -1,14 +1,17 @@
 #!/bin/bash
-
-TIME=/usr/bin/time\ -f"%C\t|%E"
+if [ `uname` == "Darwin" ]; then
+  TIME=`which gtime`\ -f"%C\t|%E"
+else
+  TIME=/usr/bin/time\ -f"%C\t|%E"
+fi
 
 $TIME ./serial
 
 $TIME ./mp
 
-$TIME  mpiexec -np 8 ./mpi
+$TIME  mpiexec -np 4 ./mpi
 
-$TIME  mpiexec -np 4 ./mpi_mp
+$TIME  mpiexec -np 2 ./mpi_mp
 
 $TIME ./cl 0 cpu
 
